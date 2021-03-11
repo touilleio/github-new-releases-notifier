@@ -64,7 +64,7 @@ services:
 ## Environment variables
 
 | Name | Default | Description |
-| ==== | ======= | =========== |
+|------|---------|-------------|
 | `CONFIG_FILE_PATH` | | Path inside the container of the config file as shown above. Example /gh-releases-notifier-config.yml |
 | `DB_STORAGE_PATH` | | Path of the boltDB file remembering which tag was already seen. Example: /data/bolt.db |
 | `NOTIFY_ALL_TAGS` | false | For newly added Github repository, should all the tags being notified? |
