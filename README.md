@@ -99,7 +99,7 @@ Special endpoint to change logging verbosity at runtime.
 
 ```
 curl http://localhost:8080/debug/verbosity
-# returns current verbotisy
+# returns current verbosity
 curl -X PUT -d debug http://localhost:8080/debug/verbosity
 # change verbosity to debug
 ```
