@@ -1,0 +1,11 @@
+projects:
+  - projectUrl: "p1"
+    tagFilter: "t1"
+  - projectUrl: "p2"
+    tagFilter: "t2"
+  - projectUrl: "p3"
+
+pollFrequency: 30m
+
+notification:
+  uri: "slack://slack-uri"

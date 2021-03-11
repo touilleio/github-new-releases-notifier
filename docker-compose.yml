@@ -1,0 +1,25 @@
+version: "3"
+
+services:
+
+  gh-releases-notifier:
+    image: "touilleio/github-new-releases-notifier:v1"
+    restart: unless-stopped
+    networks:
+      - default
+    ports:
+      - "8080"
+    security_opt:
+      - no-new-privileges:true
+    volumes:
+      - ./gh-releases-notifier-config.yml:/gh-releases-notifier-config.yml
+      - ./gh-releases-notifier-data:/data
+    environment:
+      - CONFIG_FILE_PATH=/gh-releases-notifier-config.yml
+      - DB_STORAGE_PATH=/data/bolt.db
+      - LOG_LEVEL=debug
+    labels:
+      - org.label-schema.group=touilleio
+      - autoheal=true
+      - com.centurylinklabs.watchtower.enable=true
+      - prometheus.io/scrape=true
