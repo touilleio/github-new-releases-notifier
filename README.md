@@ -11,6 +11,14 @@ The notification leverage [shoutrrr](https://github.com/containrrr/shoutrrr)
 library and support all the channels shoutrrr supports, i.e. (non-exhaustively)
 Slack, Telegram, Discord, email, etc...
 
+# Building
+
+```
+make ensure
+make build
+make package
+```
+
 # Configuration
 
 The following example polls github every 4 hours, and filters
@@ -33,11 +41,13 @@ notification:
 
 # Docker compose example
 
+The example is available [here](./docker-compose.yml).
+
 ```
 version: "3"
 services:
   gh-releases-notifier:
-    image: "touille/github-new-releases-notifier:v1"
+    image: "touilleio/github-new-releases-notifier:v1"
     restart: unless-stopped
     ports:
       - "8080"
