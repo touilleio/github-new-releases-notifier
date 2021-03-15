@@ -38,6 +38,11 @@ func NewReleasesHandler(projects []model.GithubProject, pollFrequency time.Durat
 		if err != nil {
 			return nil, err
 		}
+
+		_, err = regexp.Compile(p.TitleFilter)
+		if err != nil {
+			return nil, err
+		}
 	}
 
 	h := &Handler{
@@ -119,14 +124,24 @@ func (h *Handler) RunSingle(project model.GithubProject, notify bool) error {
 		h.log.Debugf("Got a tag %s", tag)
 
 		// filter tag
-		matches, err := filterTag(tag, project.TagFilter)
+		tagMatches, err := filterTag(tag, project.TagFilter)
 		if err != nil {
 			return err
 		}
-		if !matches {
+		if !tagMatches {
 			continue
 		}
 		h.log.Debugf("Tag %s matches filter %s", tag, project.TagFilter)
+
+		// filter title
+		titleMatches, err := filterTag(item.Title, project.TitleFilter)
+		if err != nil {
+			return err
+		}
+		if !titleMatches {
+			continue
+		}
+		h.log.Debugf("Title %s matches filter %s", item.Title, project.TitleFilter)
 
 		// check if it exists
 		exists, err := h.storageHandler.TagExists(project.ProjectUrl, tag)
