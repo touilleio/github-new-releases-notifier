@@ -2,7 +2,8 @@ projects:
   - projectUrl: "p1"
     tagFilter: "t1"
   - projectUrl: "p2"
-    tagFilter: "t2"
+    tagFilter: "tag2"
+    titleFilter: "title2"
   - projectUrl: "p3"
 
 pollFrequency: 30m
