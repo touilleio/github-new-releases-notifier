@@ -22,7 +22,8 @@ make package
 # Configuration
 
 The following example polls github every 4 hours, and filters
-tags for Golang and Kubernetes, but not for Prometheus.
+on tag names for Golang and Kubernetes, on title for AdoptOpenJDK,
+an no filter for Prometheus.
 New releases are notified in a Slack channel.
 
 ```
@@ -32,6 +33,8 @@ projects:
   - projectUrl: "https://github.com/kubernetes/kubernetes"
     tagFilter: "v\\d+(\\.\\d+){2}$"
   - projectUrl: "https://github.com/prometheus/prometheus"
+  - projectUrl: "https://github.com/AdoptOpenJDK/openjdk11-upstream-binaries"
+    titleFilter: ".*GA Release.*"
 
 pollFrequency: 4h
 
