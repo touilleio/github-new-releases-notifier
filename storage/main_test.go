@@ -1,11 +1,12 @@
 package storage
 
 import (
-	"github.com/sqooba/go-common/logging"
-	"github.com/stretchr/testify/assert"
 	"io/ioutil"
 	"path/filepath"
 	"testing"
+
+	"github.com/sqooba/go-common/logging"
+	"github.com/stretchr/testify/assert"
 )
 
 func TestPackageHandler(t *testing.T) {

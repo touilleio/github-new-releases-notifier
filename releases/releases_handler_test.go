@@ -2,16 +2,17 @@ package releases
 
 import (
 	"fmt"
+	"io/ioutil"
+	"path/filepath"
+	"testing"
+	"time"
+
 	"github.com/mmcdole/gofeed"
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/sqooba/go-common/logging"
 	"github.com/stretchr/testify/assert"
 	"github.com/touilleio/github-new-releases-notifier/model"
 	"github.com/touilleio/github-new-releases-notifier/storage"
-	"io/ioutil"
-	"path/filepath"
-	"testing"
-	"time"
 )
 
 func TestGoFeed(t *testing.T) {

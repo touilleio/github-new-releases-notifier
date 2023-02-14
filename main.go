@@ -4,6 +4,13 @@ import (
 	"context"
 	"flag"
 	"fmt"
+	"io/ioutil"
+	"net/http"
+	"os"
+	"os/signal"
+	"sync"
+	"syscall"
+
 	"github.com/kelseyhightower/envconfig"
 	"github.com/sqooba/go-common/logging"
 	"github.com/sqooba/go-common/version"
@@ -12,12 +19,6 @@ import (
 	"github.com/touilleio/github-new-releases-notifier/releases"
 	"github.com/touilleio/github-new-releases-notifier/storage"
 	"gopkg.in/yaml.v3"
-	"io/ioutil"
-	"net/http"
-	"os"
-	"os/signal"
-	"sync"
-	"syscall"
 )
 
 var (

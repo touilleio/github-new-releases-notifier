@@ -1,10 +1,11 @@
 package notification
 
 import (
+	"testing"
+
 	"github.com/sqooba/go-common/logging"
 	"github.com/stretchr/testify/assert"
 	"github.com/touilleio/github-new-releases-notifier/model"
-	"testing"
 )
 
 func TestNotification(t *testing.T) {

@@ -2,13 +2,14 @@ package releases
 
 import (
 	"fmt"
+	"regexp"
+	"time"
+
 	"github.com/mmcdole/gofeed"
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/sirupsen/logrus"
 	"github.com/touilleio/github-new-releases-notifier/model"
 	"github.com/touilleio/github-new-releases-notifier/storage"
-	"regexp"
-	"time"
 )
 
 type Handler struct {

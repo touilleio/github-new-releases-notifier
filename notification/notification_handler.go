@@ -2,6 +2,7 @@ package notification
 
 import (
 	"fmt"
+
 	"github.com/containrrr/shoutrrr"
 	"github.com/containrrr/shoutrrr/pkg/router"
 	t "github.com/containrrr/shoutrrr/pkg/types"

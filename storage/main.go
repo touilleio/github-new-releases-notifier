@@ -3,11 +3,12 @@ package storage
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/sirupsen/logrus"
-	bolt "go.etcd.io/bbolt"
 	"io/ioutil"
 	"net/http"
 	"strings"
+
+	"github.com/sirupsen/logrus"
+	bolt "go.etcd.io/bbolt"
 )
 
 type Handler struct {
