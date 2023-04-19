@@ -1,0 +1,65 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: github-new-releases-notifier
+  labels:
+    app: github-new-releases-notifier
+spec:
+  selector:
+    matchLabels:
+      app: github-new-releases-notifier
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: github-new-releases-notifier
+    spec:
+      containers:
+        - name: github-new-releases-notifier
+          image: github-new-releases-notifier:v1
+          imagePullPolicy: Always
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          env:
+            - name: CONFIG_FILE_PATH
+              value: /app/conf/config.yml
+            - name: DB_STORAGE_PATH
+              value: /app/bolt.db
+            - name: LOG_LEVEL
+              value: info
+          volumeMounts:
+            - name: github-new-releases-notifier-config
+              mountPath: /app/conf
+      volumes:
+        - name: github-new-releases-notifier-config
+          configMap:
+            name: github-new-releases-notifier-config
+            items:
+              - key: config.yml
+                path: config.yml
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: github-new-releases-notifier-config
+  labels:
+    app: github-new-releases-notifier
+data:
+  config.yml: |
+    projects:
+      - projectUrl: "https://github.com/golang/go"
+        tagFilter: "go\\d+(\\.\\d+){1,2}$"
+      - projectUrl: "https://github.com/kubernetes/kubernetes"
+        tagFilter: "v\\d+(\\.\\d+){2}$"
+      - projectUrl: "https://github.com/prometheus/prometheus"
+      - projectUrl: "https://github.com/AdoptOpenJDK/openjdk11-upstream-binaries"
+        titleFilter: ".*GA Release.*"
+
+    pollFrequency: 4h
+
+    notification:
+      uri: "slack://xxxx/yyyy/zzz"
