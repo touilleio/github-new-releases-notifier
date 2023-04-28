@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Values.appName }}-conf
+  labels:
+    app: {{ .Values.appName }}
+data:
+  config.yml: |
+    projects:
+      {{- range $item := .Values.config.projects }}
+      - projectUrl: {{ $item.url | quote }}
+      {{- if $item.filter }}
+        tagFilter: {{ $item.filter | quote }}
+      {{- end -}}
+      {{- end }}
+
+    pollFrequency: {{ .Values.config.pollFreq | quote }}
+
+    notification:
+      uri: {{ default "slack://xxxx/yyyy/zzz" .Values.config.slack | quote }}
