@@ -1,4 +1,4 @@
-FROM golang:1.20-alpine AS build_base
+FROM golang:1.21-alpine AS build_base
 
 RUN apk add --no-cache git
 
@@ -21,9 +21,11 @@ RUN go build -o ./out/releases-notifier .
 
 # Start fresh from a smaller image
 FROM alpine:3.17
-RUN apk add ca-certificates
+RUN apk add --no-cache ca-certificates
 
 COPY --from=build_base /tmp/releases-notifier/out/releases-notifier /app/releases-notifier
+
+USER nobody
 
 # This container exposes port 8080 to the outside world
 EXPOSE 8080

@@ -1,6 +1,6 @@
 module github.com/touilleio/github-new-releases-notifier
 
-go 1.19
+go 1.21
 
 require (
 	github.com/containrrr/shoutrrr v0.6.0

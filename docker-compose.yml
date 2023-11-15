@@ -4,6 +4,8 @@ services:
 
   gh-releases-notifier:
     image: "touilleio/github-new-releases-notifier:v1"
+    build:
+      context: .
     restart: unless-stopped
     networks:
       - default
